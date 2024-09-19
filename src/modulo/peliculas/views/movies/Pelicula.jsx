@@ -6,7 +6,7 @@ import Loading from "../../../../core/componentes/Loading";
 const Peliculas = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-
+  //
   // hooks - API
   const { data: dataMoviesPopular, isFetching: isFetchingMovies } =
     useListMoviesPopular(currentPage);
