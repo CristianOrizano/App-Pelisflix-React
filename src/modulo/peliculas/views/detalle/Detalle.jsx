@@ -18,7 +18,7 @@ const Detalle = () => {
     tipoMovieSerie
   );
   const { data: dataReparto, isFetching: isFetchingReparto } =
-    useListRepartoMovie(idMovieSerie,tipoMovieSerie,creditos);
+    useListRepartoMovie(idMovieSerie, tipoMovieSerie, creditos);
   // ---------
 
   console.log("type", tipo);
@@ -60,16 +60,24 @@ const Detalle = () => {
       {isFetchingMovies ? (
         "cargando"
       ) : (
-        <div
-          className="container  text-white p-0"
-          style={{ "margin-top": 100 }}
-        >
-          <div className="card  mb-3 opaque-background">
-            <div className="row align-items-center ">
-              <div className="col-md-4 ">
+        <div className="  text-white p-0" style={{ "margin-top": 60 }}>
+          <div
+            className="card  mb-3 p-5"
+            style={{
+              backgroundImage: `
+               linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+              url(https://image.tmdb.org/t/p/w1280${dataDetalle?.backdrop_path})`,
+            
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: "1rem",
+            }}
+          >
+            <div className="row align-items-center justify-content-center ">
+              <div className="col-md-4 text-center ">
                 <img
-                  src={`https://image.tmdb.org/t/p/w1280${dataDetalle?.poster_path}`}
-                  className="img-fluid rounded-start"
+                  src={`https://image.tmdb.org/t/p/w342${dataDetalle?.poster_path}`}
+                  className="img-fluid rounded"
                 />
               </div>
               <div className="col-md-8">
@@ -111,25 +119,30 @@ const Detalle = () => {
                   <h4>
                     <strong className="dd"> Reparto Principal </strong>
                   </h4>
-                  <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4  row-cols-lg-6 ">
+                  <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
                     {isFetchingReparto
                       ? "cargando"
                       : primerosSeisResultados?.map((item, index) => (
                           <div className="col" key={index}>
-                            <div className="card bg-dark text-white h-100">
+                            <div
+                              className="card text-white h-100"
+                              style={{ width: "150px", background: "#161616ff" }}
+                            >
                               <img
-                                src={`https://image.tmdb.org/t/p/w1280${item.profile_path}`}
+                                src={`https://image.tmdb.org/t/p/w342${item.profile_path}`}
                                 className="card-img-top"
                               />
                               <div className="card-body">
-                                <p className="card-title fw-bold">
+                                <h6 className="fs-6">
                                   {item.original_name}
-                                </p>
-                                {item.character != null ?  <p className="card-title ">
-                                  ({item.character})
-                                </p>:""}
-                              
-
+                                </h6>
+                                {item.character != null ? (
+                                  <p className="" style={{ fontSize: "0.80rem" }}> 
+                                    ({item.character})
+                                  </p>
+                                ) : (
+                                  ""
+                                )}
                               </div>
                             </div>
                           </div>
